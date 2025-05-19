@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mahasiswa extends Model
 {
-    protected $table = 'mahasiswa';
+    protected $table = 'mahasiswas';
 
     public function prodi()
     {
