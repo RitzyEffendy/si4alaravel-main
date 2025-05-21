@@ -38,15 +38,26 @@
                             <th>NPM</th>
                             <th>Prodi</th>
                             <th>Fakultas</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($mahasiswa as $item)
                         <tr>
+                            <td><img src="images/{{ $item->foto }}" width="80px" /></td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->npm }}</td>
                             <td>{{ $item->prodi->nama}}</td>
                             <td>{{ $item->prodi->fakultas->nama}}</td>
+                            <td>
+                                <a href="{{ route('mahasiswa.show', $item->id) }}" class="btn btn-info">Show</a>
+                                <a href="{{ route('mahasiswa.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('mahasiswa.destroy', $item->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
