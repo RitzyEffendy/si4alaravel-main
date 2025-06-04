@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'dosen', 'mahasiswa'])
-                ->default('mahasiswa')
-                ->after('email');
+        Schema::create('matakuliah', function (Blueprint $table) {
+            $table->id();
+            $table->string('kode_mk', 10);
+            $table->string('nama', 100);
+            $table->foreignId('prodi_id')->constrained('prodi')->onDelete('restrict')->onUpdate('restrict');
+            $table->timestamps();
         });
     }
 
@@ -23,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('matakuliah');
     }
 };

@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Mahasiswa')
+@section('title', 'Jadwal')
 
 @section('content')
 <!--begin::Row-->
@@ -8,7 +8,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-            <h3 class="card-title">List Mahasiswa</h3>
+            <h3 class="card-title">List Jadwal</h3>
             <div class="card-tools">
                 <button
                 type="button"
@@ -30,37 +30,28 @@
             </div>
             </div>
             <div class="card-body">
-                <div>
-                    <a href="{{ route ('mahasiswa.index')}}" class="btn btn-primary mb-3">Kembali</a>               
+                <div class="table-responsive">
+                    <a href="{{ route ('jadwal.index')}}" class="btn btn-primary mb-3">Kembali</a>
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <th>NPM</th>
-                            <td>{{ $mahasiswa-> npm}}</td>
+                            <th>Tahun Akademik</th>
+                            <td>{{ $jadwal-> tahun_akademik}}</td>
                         </tr>
                         <tr>
-                            <th>Nama</th>
-                            <td>{{ $mahasiswa-> nama}}</td>
+                            <th>kode Semester</th>
+                            <td>{{ $jadwal-> kode_smt}}</td>
                         </tr>
                         <tr>
-                            <th>Tempat, Tanggal Lahir</th>
-                            <td>{{ $mahasiswa->tempat_lahir}}, {{ $mahasiswa->tanggal_lahir}}</td>
+                            <th>Matakuliah</th>
+                            <td>{{ $jadwal->matakuliah->nama}}</td>
                         </tr>
                         <tr>
-                            <th>Asal SMA</th>
-                            <td>{{ $mahasiswa-> asal_sma}}</td>
+                            <th>Dosen</th>
+                            <td>{{ $jadwal->users->name}}</td> 
                         </tr>
                         <tr>
-                            <th>Progam Studi</th>
-                            <td>{{ $mahasiswa->prodi->nama}}</td>
-                        </tr>
-                        <tr>
-                            <th>Progam Studi</th>
-                            <td>{{ $mahasiswa->prodi->fakultas->nama}}</td>
-                        </tr>
-                        <tr>       
-                            <td colspan="2">
-                                <img src="{{ asset('images/'.$mahasiswa->foto) }}" class="img-fluid">    
-                            </td>
+                            <th>Sesi</th>
+                            <td>{{ $jadwal->sesi->nama}}</td>
                         </tr>
                     </table>
                 </div>
@@ -73,3 +64,5 @@
         </div>
     </div>
 @endsection
+    <!--end::Row-->
+ 

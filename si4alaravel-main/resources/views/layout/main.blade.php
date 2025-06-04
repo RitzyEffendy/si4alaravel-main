@@ -1,9 +1,9 @@
-
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     <title>@yield('title')</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -94,7 +94,7 @@
                     </div>
                     <div class="flex-grow-1">
                       <h3 class="dropdown-item-title">
-                        Brad Diesel
+                        Davin
                         <span class="float-end fs-7 text-danger"
                           ><i class="bi bi-star-fill"></i
                         ></span>
@@ -208,7 +208,7 @@
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                <span class="d-none d-md-inline">{{Auth::user()->name}}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
@@ -219,7 +219,7 @@
                     alt="User Image"
                   />
                   <p>
-                    {{ Auth::user()->name }} - Dosen/Admin
+                    {{Auth::user()->name}}- Frontend Developer
                     <small>Member since Nov. 2023</small>
                   </p>
                 </li>
@@ -238,13 +238,14 @@
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
                   <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();" class="btn btn-default btn-flat float-end">
+                                                this.closest('form').submit();" class="btn btn-default btn-flat">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
@@ -288,8 +289,7 @@
               data-lte-toggle="treeview"
               role="menu"
               data-accordion="false"
-            >
-              <li class="nav-item">
+            ><li class="nav-item">
                 <a class='nav-link' href='{{ url('dashboard') }}'>
                   <i class="nav-icon bi bi-palette"></i>
                   <p>Dashboard</p>
@@ -304,13 +304,31 @@
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('prodi') }}'>
                   <i class="nav-icon bi bi-palette"></i>
-                  <p>Program Studi</p>
+                  <p>Prodi</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a class='nav-link' href='{{ url('mahasiswa') }}'>
                   <i class="nav-icon bi bi-palette"></i>
                   <p>Mahasiswa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class='nav-link' href='{{ url('sesi') }}'>
+                  <i class="nav-icon bi bi-palette"></i>
+                  <p>Sesi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class='nav-link' href='{{ url('matakuliah') }}'>
+                  <i class="nav-icon bi bi-palette"></i>
+                  <p>MataKuliah</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class='nav-link' href='{{ url('jadwal') }}'>
+                  <i class="nav-icon bi bi-palette"></i>
+                  <p>Jadwal</p>
                 </a>
               </li>
             </ul>
@@ -326,17 +344,17 @@
         <div class="app-content-header">
           <!--begin::Container-->
           <div class="container-fluid">
-                <!--begin::Row-->
-                <div class="row">
-                    <div class="col-sm-6"><h3 class="mb-0">@yield('title')</h3></div>
-                    <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-end">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
-                    </ol>
-                    </div>
-                </div>
-                <!--end::Row-->
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6"><h3 class="mb-0">@yield('title')</h3></div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
+                </ol>
+              </div>
+            </div>
+            <!--end::Row-->
           </div>
           <!--end::Container-->
         </div>
@@ -410,17 +428,18 @@
       });
     </script>
     <!--end::OverlayScrollbars Configure-->
-    <!--Jquery cdn-->
-    <!---->
-
-    <!--Sweet alert js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-    <script type="text/javascript">
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <!-- sweetalert -->
+     
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
     $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
         var nama = $(this).data("nama");
         event.preventDefault();
-        swal({
+        swal.fire({
                 title: `Apakah Anda yakin ingin menghapus data ${nama} ini?`,
                 text: "If you delete this, it will be gone forever.",
                 icon: "warning",
@@ -432,16 +451,14 @@
                     form.submit();
                 }
             });
-    });
-    </script>
-
+      });
+  </script>
     @session('success')
     <script>
-      swal({
-        title: "Good job!",
-        text: "{{ session('success')}}",
-        icon: "success"
-      });
+      Swal.fire({
+      text: "{{session('success')}}",
+      icon: "success"
+    });
     </script>
     @endsession
     <!--end::Script-->
