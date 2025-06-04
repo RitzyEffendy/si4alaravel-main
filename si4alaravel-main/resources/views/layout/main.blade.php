@@ -219,7 +219,7 @@
                     alt="User Image"
                   />
                   <p>
-                    {{Auth::user()->name}}- Frontend Developer
+                    {{Auth::user()->name}} - {{ strtoupper(Auth::user()->role) }}
                     <small>Member since Nov. 2023</small>
                   </p>
                 </li>
