@@ -44,7 +44,7 @@
                     <tbody>
                     @foreach ($mahasiswa as $item)
                         <tr>
-                            <td><img src="images/{{ $item->foto }}" width="80px" /></td>
+                            <td><img src=" {{ $item->foto }}" width="80px" /></td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->npm }}</td>
                             <td>{{ $item->prodi->nama}}</td>
